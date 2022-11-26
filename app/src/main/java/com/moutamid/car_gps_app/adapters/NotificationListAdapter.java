@@ -39,7 +39,7 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
         CarDetails model = positionArrayList.get(position);
         holder.nametxt.setText(model.getCar());
         holder.positiontxt.setText("OH 59min");
-        holder.citytxt.setText(model.getLocation());
+        holder.citytxt.setText("Vehicle " + model.getCar() + " is");
         holder.timttext.setText(model.getTime());
 
     }

@@ -1,5 +1,7 @@
 package com.moutamid.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -18,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.moutamid.car_gps_app.MainActivity;
 import com.moutamid.car_gps_app.R;
 import com.moutamid.car_gps_app.adapters.PositionListAdapter;
 import com.moutamid.car_gps_app.adapters.SlideViewPagerAdapter;
@@ -33,7 +37,9 @@ public class home_fragment extends Fragment {
     private ArrayList<CarDetails> positionArrayList;
     private DatabaseReference db;
     private TextView movingTxt,parkTxt,allTxt;
+    private CardView movingLayout,parkLayout,allLayout,late_layout,renewal_layout,alert_layout;
 
+    @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,8 +49,14 @@ public class home_fragment extends Fragment {
         nextImg = view.findViewById(R.id.right_arrow);
         prevImg = view.findViewById(R.id.left_arrow);
         parkTxt = view.findViewById(R.id.park_count);
+        movingLayout = view.findViewById(R.id.move_layout);
+        parkLayout = view.findViewById(R.id.park_layout);
+        allLayout = view.findViewById(R.id.all_layout);
         movingTxt = view.findViewById(R.id.moving_count);
         allTxt = view.findViewById(R.id.all_count);
+        late_layout = view.findViewById(R.id.late_layout);
+        renewal_layout = view.findViewById(R.id.renewal_layout);
+        alert_layout = view.findViewById(R.id.alert_layout);
         positionArrayList = new ArrayList<>();
         db = FirebaseDatabase.getInstance().getReference().child("Car");
         getPosition();
@@ -64,6 +76,63 @@ public class home_fragment extends Fragment {
                 pager.setCurrentItem(currentPage);
             }
         });
+
+        parkLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),MainActivity.class);
+                intent.putExtra("home",true);
+                startActivity(intent);
+            }
+        });
+
+        movingLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),MainActivity.class);
+                intent.putExtra("home",true);
+                startActivity(intent);
+            }
+        });
+
+        allLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),MainActivity.class);
+                intent.putExtra("home",true);
+                startActivity(intent);
+
+            }
+        });
+
+        late_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),MainActivity.class);
+                intent.putExtra("late",true);
+                startActivity(intent);
+            }
+        });
+
+        renewal_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),MainActivity.class);
+                intent.putExtra("renewal",true);
+                startActivity(intent);
+            }
+        });
+
+        alert_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),MainActivity.class);
+                intent.putExtra("alert",true);
+                startActivity(intent);
+
+            }
+        });
+
         return view;
     }
 

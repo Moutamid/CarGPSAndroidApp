@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.moutamid.car_gps_app.Service.ListenNotification;
 import com.moutamid.car_gps_app.model.User;
 import com.moutamid.fragment.HELP_fragment;
+import com.moutamid.fragment.MyNotificationFragment;
 import com.moutamid.fragment.VehicleGroupFragment;
 import com.moutamid.fragment.alarm_fragment;
 import com.moutamid.fragment.change_fragment;
@@ -40,11 +41,15 @@ import com.moutamid.fragment.subscription_fragments;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    TextView title,username,email;
+    public TextView title,username,email;
     DrawerLayout drawer;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private String emails = "";
+    private boolean isHome = false;
+    private boolean isLate = false;
+    private boolean isRenewal = false;
+    private boolean isAlert = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +72,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         email = navigationView.getHeaderView(0).findViewById(R.id.navEmailTv);
         navigationView.setNavigationItemSelectedListener(this);
         title = toolbar.findViewById(R.id.title);
-        title.setText("Dashboard");
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new home_fragment()).commit();
+        isHome = getIntent().getBooleanExtra("home",false);
+        isLate = getIntent().getBooleanExtra("late",false);
+        isRenewal = getIntent().getBooleanExtra("renewal",false);
+        isAlert = getIntent().getBooleanExtra("alert",false);
+        if (isHome){
+            title.setText("Position");
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new position_fragment()).commit();
+
+        }else if (isLate){
+            title.setText("Turn On&Off");
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new commands_fragment()).commit();
+
+        }else if (isRenewal){
+            title.setText("Subscription");
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new subscription_fragments()).commit();
+
+        }else if (isAlert){
+            title.setText("Notifications");
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new MyNotificationFragment()).commit();
+
+        }
+        else{
+            title.setText("Dashboard");
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new home_fragment()).commit();
+        }
         getUserDetails();
         if (!isMyServiceRunning()){
             Intent serviceIntent = new Intent(MainActivity.this,ListenNotification.class);
@@ -138,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
         else if(id==R.id.commands){
-            title.setText("Commands");
+            title.setText("Turn On&Off");
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new commands_fragment()).commit();
 
         }

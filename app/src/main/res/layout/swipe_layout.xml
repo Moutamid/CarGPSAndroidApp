@@ -45,6 +45,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:padding="10dp"
+                    android:id="@+id/park_layout"
                     app:cardBackgroundColor="#F8F5F5"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp">
@@ -112,6 +113,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:padding="10dp"
+                    android:id="@+id/move_layout"
                     app:cardBackgroundColor="#F8F5F5"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp">
@@ -177,6 +179,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:padding="10dp"
+                    android:id="@+id/all_layout"
                     app:cardBackgroundColor="#F8F5F5"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp">
@@ -249,6 +252,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:padding="10dp"
+                    android:id="@+id/late_layout"
                     app:cardBackgroundColor="#F8F5F5"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp">
@@ -313,6 +317,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:padding="10dp"
+                    android:id="@+id/renewal_layout"
                     app:cardBackgroundColor="#F8F5F5"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp">
@@ -377,6 +382,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:padding="10dp"
+                    android:id="@+id/alert_layout"
                     app:cardBackgroundColor="#F8F5F5"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp">

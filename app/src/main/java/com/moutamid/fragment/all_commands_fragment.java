@@ -88,7 +88,6 @@ public class all_commands_fragment extends Fragment {
                     adapter.setItemPressListener(new ItemPressListener() {
                         @Override
                         public void onItemClick(int position, View view) {
-                            Toast.makeText(getActivity(), positionArrayList.get(position).getCar(), Toast.LENGTH_SHORT).show();
                             showCommandsDialog(positionArrayList.get(position));
                         }
                     });
